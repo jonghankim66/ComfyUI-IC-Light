@@ -22,7 +22,9 @@ def calculate_weight_adjust_channel(func):
             if isinstance(v, list):
                 continue
 
-            if len(v) == 1:
+            # sometimes no len() included object passed to this routine, it needs to be checked if it has the attribute 
+            #if len(v) == 1:
+            if hasattr(v, "__len__") and len(v) == 1:    
                 patch_type = "diff"
             elif len(v) == 2:
                 patch_type = v[0]
